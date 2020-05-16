@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRideTrackerWebApp", "MyRideTrackerWebApp\MyRideTrackerWebApp.csproj", "{74958968-AFDB-4989-B3FD-1AC11895F58B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74958968-AFDB-4989-B3FD-1AC11895F58B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74958968-AFDB-4989-B3FD-1AC11895F58B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74958968-AFDB-4989-B3FD-1AC11895F58B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74958968-AFDB-4989-B3FD-1AC11895F58B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F966B16-2777-4361-9C49-FAF84CA6F014}
+	EndGlobalSection
+EndGlobal
