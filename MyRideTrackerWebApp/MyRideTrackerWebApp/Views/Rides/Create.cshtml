@@ -1,0 +1,48 @@
+﻿@model MyRideTrackerWebApp.Models.Ride
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add Ride</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RideDate" class="control-label">Ride Date</label>
+                <input asp-for="RideDate" class="form-control" />
+                <span asp-validation-for="RideDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MileageStart" class="control-label">Start Mileage</label>
+                <input asp-for="MileageStart" class="form-control" />
+                <span asp-validation-for="MileageStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MileageEnd" class="control-label">End Mileage</label>
+                <input asp-for="MileageEnd" class="form-control" />
+                <span asp-validation-for="MileageEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RideRoute" class="control-label">Ride Route</label>
+                <input asp-for="RideRoute" class="form-control" />
+                <span asp-validation-for="RideRoute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RideDescription" class="control-label">Description</label>
+                <input asp-for="RideDescription" class="form-control" />
+                <span asp-validation-for="RideDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

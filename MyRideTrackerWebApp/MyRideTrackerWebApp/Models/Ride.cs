@@ -11,7 +11,8 @@ namespace MyRideTrackerWebApp.Models
 		public int RideId { get; set; }
 		[DataType(DataType.Date)]
 		public DateTime RideDate { get; set; }
-		public decimal RideDistance { get; set; }
+		public int MileageStart { get; set; }
+		public int MileageEnd { get; set; }
 		public string RideRoute { get; set; }
 		public string RideDescription { get; set; }
 

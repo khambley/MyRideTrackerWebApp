@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MyRideTrackerWebApp.Models.Ride>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rides List</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Start Mileage
+            </th>
+            <th>
+                End Mileage
+            </th>
+            <th>
+                Total Miles
+            </th>
+            <th>
+               Route
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MileageStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MileageEnd)
+            </td>
+            <td>
+                @Html.Raw(item.MileageEnd - item.MileageStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideRoute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RideId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RideId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RideId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+Total Rides = @Model.Count() <br />
+Total Miles = @Model.Sum(m => m.MileageEnd - m.MileageStart)
