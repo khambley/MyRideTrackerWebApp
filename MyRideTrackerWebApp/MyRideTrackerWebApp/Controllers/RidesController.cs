@@ -13,6 +13,7 @@ namespace MyRideTrackerWebApp.Controllers
     public class RidesController : Controller
     {
         private readonly RideDbContext _context;
+        public const int StartingMileage = 415;
 
         public RidesController(RideDbContext context)
         {
@@ -22,7 +23,21 @@ namespace MyRideTrackerWebApp.Controllers
         // GET: Rides
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Rides.ToListAsync());
+            ViewBag.InitialStartingMileage = StartingMileage;
+            var model = await _context.Rides
+                .Select(r => new Ride
+                {
+                    RideId = r.RideId,
+                    RideDate = r.RideDate,
+                    MileageStart = r.MileageStart,
+                    MileageEnd = r.MileageEnd,
+                    TotalMiles = r.TotalMiles,
+                    RideRoute = r.RideRoute,
+                    RideDescription = r.RideDescription,
+                    ImagePath = r.ImagePath
+                }).ToListAsync();
+
+            return View(model);
         }
 
         // GET: Rides/Details/5
@@ -46,6 +61,19 @@ namespace MyRideTrackerWebApp.Controllers
         // GET: Rides/Create
         public IActionResult Create()
         {
+            var ridesList = _context.Rides.ToList();
+            if (ridesList.Count() == 0)
+            { 
+                ViewBag.Mileage = StartingMileage;
+            }
+            else
+            {
+                var prevRideInDb = _context.Rides
+                                           .OrderByDescending(r => r.RideId)
+                                           .FirstOrDefault();
+
+                ViewBag.Mileage = prevRideInDb.MileageEnd;
+            }
             return View();
         }
 
@@ -54,8 +82,25 @@ namespace MyRideTrackerWebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RideId,RideDate,MileageStart,MileageEnd,RideRoute,RideDescription")] Ride ride)
+        public async Task<IActionResult> Create([Bind("RideId,RideDate,MileageEnd,RideRoute,RideDescription")] Ride ride)
         {
+            var ridesList = _context.Rides.ToList();
+            if ( ridesList.Count() == 0)
+            {
+                ride.MileageStart = StartingMileage;
+                ViewBag.Mileage = ride.MileageStart;
+            } else
+            {
+                var prevRideInDb = _context.Rides
+                                           .OrderByDescending(r => r.RideId)
+                                           .FirstOrDefault();
+
+                ride.MileageStart = prevRideInDb.MileageEnd;
+                ViewBag.Mileage = ride.MileageStart;
+            }
+
+            ride.TotalMiles = ride.MileageEnd - ride.MileageStart;
+
             if (ModelState.IsValid)
             {
                 _context.Add(ride);
@@ -78,6 +123,7 @@ namespace MyRideTrackerWebApp.Controllers
             {
                 return NotFound();
             }
+            
             return View(ride);
         }
 
@@ -92,6 +138,8 @@ namespace MyRideTrackerWebApp.Controllers
             {
                 return NotFound();
             }
+
+            ride.TotalMiles = ride.MileageEnd - ride.MileageStart;
 
             if (ModelState.IsValid)
             {
