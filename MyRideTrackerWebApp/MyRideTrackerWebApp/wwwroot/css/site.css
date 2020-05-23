@@ -1,12 +1,74 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+@charset "UTF-8";
 
+@font-face {
+    font-family: "motorcycle-icons";
+    src: url("fonts/motorcycle-icons.eot");
+    src: url("fonts/motorcycle-icons.eot?#iefix") format("embedded-opentype"), url("fonts/motorcycle-icons.woff") format("woff"), url("fonts/motorcycle-icons.ttf") format("truetype"), url("fonts/motorcycle-icons.svg#motorcycle-icons") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[data-icon]:before {
+    font-family: "motorcycle-icons" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-family: "motorcycle-icons" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 3rem !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-motorcycle-rider:before {
+    content: "\61";
+    font-size: 3rem !important;
+}
+
+.icon-motorcycle-rider-front:before {
+    content: "\62";
+    font-size: 3rem !important;
+}
+
+.icon-motorcycle-cycle:before {
+    content: "\63";
+}
+
+.icon-motorcycle-helmet:before {
+    content: "\64";
+}
+.icon-motorcycle-flags:before {
+    content: "\65";
+}
+
+.icon-motorcycle-goggles:before {
+    content: "\66";
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
-
+.btn {
+    margin-bottom: 10px !important;
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;

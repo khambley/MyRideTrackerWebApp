@@ -1,7 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-outline-danger btn-lg btn-block text-center" asp-area="" asp-controller="Rides" asp-action="Create"><i class="icon icon-motorcycle-rider"></i><br />Add Ride</a>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-outline-warning btn-lg btn-block text-center" asp-area="" asp-controller="Rides" asp-action="Index"><i class="icon icon-motorcycle-goggles"></i><br />View Rides</a>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-outline-success btn-lg btn-block text-center" asp-area="" asp-controller="Rides" asp-action="Create"><i class="icon icon-motorcycle-flags"></i><br />Add Challenge</a>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-outline-dark btn-lg btn-block text-center" asp-area="" asp-controller="Rides" asp-action="Create"><i class="icon icon-motorcycle-helmet"></i><br />View Challenges</a>
+        </div>
+    </div>
 
-<div class="text-center">
-    <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Rides" asp-action="Create">Add Ride</a>
-</div>
