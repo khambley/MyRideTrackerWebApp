@@ -4,23 +4,40 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MyRideTrackerWebApp.Data;
 using MyRideTrackerWebApp.Models;
 
 namespace MyRideTrackerWebApp.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly RideDbContext _context;
 		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, RideDbContext context)
 		{
 			_logger = logger;
+			_context = context;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			return View();
+			var model = await _context.Rides
+				.Select(r => new Ride
+				{
+					RideId = r.RideId,
+					RideDate = r.RideDate,
+					MileageStart = r.MileageStart,
+					MileageEnd = r.MileageEnd,
+					TotalMiles = r.TotalMiles,
+					RideRoute = r.RideRoute,
+					RideDescription = r.RideDescription,
+					ImagePath = r.ImagePath
+				}).ToListAsync();
+
+			return View(model);
 		}
 
 		public IActionResult About()

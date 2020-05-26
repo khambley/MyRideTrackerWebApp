@@ -32,6 +32,9 @@ namespace MyRideTrackerWebApp.Controllers
                     MileageStart = r.MileageStart,
                     MileageEnd = r.MileageEnd,
                     TotalMiles = r.TotalMiles,
+                    FillUp = r.FillUp,
+                    Gallons = r.Gallons,
+                    PricePerGallon = r.Gallons,
                     RideRoute = r.RideRoute,
                     RideDescription = r.RideDescription,
                     ImagePath = r.ImagePath

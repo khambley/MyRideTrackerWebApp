@@ -26,14 +26,26 @@ namespace MyRideTrackerWebApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("FillUp")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Gallons")
+                        .HasColumnType("decimal(8, 2)");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("MapMiles")
+                        .HasColumnType("decimal(8, 2)");
 
                     b.Property<int>("MileageEnd")
                         .HasColumnType("int");
 
                     b.Property<int>("MileageStart")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("PricePerGallon")
+                        .HasColumnType("decimal(8, 2)");
 
                     b.Property<DateTime>("RideDate")
                         .HasColumnType("datetime2");
