@@ -34,7 +34,7 @@ namespace MyRideTrackerWebApp.Controllers
                     TotalMiles = r.TotalMiles,
                     FillUp = r.FillUp,
                     Gallons = r.Gallons,
-                    PricePerGallon = r.Gallons,
+                    PricePerGallon = r.PricePerGallon,
                     RideRoute = r.RideRoute,
                     RideDescription = r.RideDescription,
                     ImagePath = r.ImagePath
@@ -85,7 +85,7 @@ namespace MyRideTrackerWebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RideId,RideDate,MileageEnd,RideRoute,RideDescription")] Ride ride)
+        public async Task<IActionResult> Create([Bind("RideId,RideDate,MileageEnd,FillUp,Gallons,PricePerGallon,MapMiles,RideRoute,RideDescription,ImagePath")] Ride ride)
         {
             var ridesList = _context.Rides.ToList();
             if ( ridesList.Count() == 0)

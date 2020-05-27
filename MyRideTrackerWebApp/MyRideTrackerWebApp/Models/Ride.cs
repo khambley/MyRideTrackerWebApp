@@ -11,26 +11,28 @@ namespace MyRideTrackerWebApp.Models
 	{
 		public int RideId { get; set; }
 		[DataType(DataType.Date)]
+		[Required]
 		public DateTime RideDate { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		public int MileageStart { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
+		[Required]
 		public int MileageEnd { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		public int TotalMiles { get; set; }
 		public bool FillUp { get; set; }
 
 		[Column(TypeName = "decimal(8, 2)")]
-		public decimal Gallons { get; set; }
+		public decimal? Gallons { get; set; }
 
 		[Column(TypeName = "decimal(8, 2)")]
-		public decimal PricePerGallon { get; set; }
+		public decimal? PricePerGallon { get; set; }
 
 		[Column(TypeName = "decimal(8, 2)")]
-		public decimal MapMiles { get; set; }
-		public string RideRoute { get; set; }
-		public string RideDescription { get; set; }
-		public string ImagePath { get; set; }
+		public decimal? MapMiles { get; set; }
+		public string? RideRoute { get; set; }
+		public string? RideDescription { get; set; }
+		public string? ImagePath { get; set; }
 
 
 	}

@@ -22,6 +22,11 @@ Current Mileage: @ViewBag.Mileage
                 <span asp-validation-for="MileageEnd" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MapMiles" class="control-label">Map Mileage</label>
+                <input asp-for="MapMiles" class="form-control" />
+                <span asp-validation-for="MapMiles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="RideRoute" class="control-label">Ride Route</label>
                 <input asp-for="RideRoute" class="form-control" />
                 <span asp-validation-for="RideRoute" class="text-danger"></span>
@@ -30,6 +35,22 @@ Current Mileage: @ViewBag.Mileage
                 <label asp-for="RideDescription" class="control-label">Description</label>
                 <input asp-for="RideDescription" class="form-control" />
                 <span asp-validation-for="RideDescription" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <input asp-for="FillUp" class="form-check-input" />
+                <label asp-for="FillUp" class="form-check-label">Fill Up?</label>
+                <span asp-validation-for="FillUp" class="text-danger"></span>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <label asp-for="Gallons" class="control-label">Gallons</label>
+                <input asp-for="Gallons" class="form-control" />
+                @*<span asp-validation-for="Gallons" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerGallon" class="control-label">Price (per gallon)</label>
+                <input asp-for="PricePerGallon" class="form-control" />
+                @*<span asp-validation-for="PricePerGallon" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Add" class="btn btn-primary" />

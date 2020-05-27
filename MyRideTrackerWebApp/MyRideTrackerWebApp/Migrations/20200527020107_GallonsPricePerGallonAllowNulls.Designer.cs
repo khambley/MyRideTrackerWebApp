@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyRideTrackerWebApp.Data;
 
 namespace MyRideTrackerWebApp.Migrations
 {
     [DbContext(typeof(RideDbContext))]
-    partial class RideDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200527020107_GallonsPricePerGallonAllowNulls")]
+    partial class GallonsPricePerGallonAllowNulls
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace MyRideTrackerWebApp.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("MapMiles")
+                    b.Property<decimal>("MapMiles")
                         .HasColumnType("decimal(8, 2)");
 
                     b.Property<int>("MileageEnd")

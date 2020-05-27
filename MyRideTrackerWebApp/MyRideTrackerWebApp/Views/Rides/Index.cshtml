@@ -17,13 +17,22 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
                 Date
             </th>
             <th>
-                Start Mileage
+                Start <br /> Mileage
             </th>
             <th>
-                End Mileage
+                End <br /> Mileage
             </th>
             <th>
-                Total Miles
+                Total <br /> Miles
+            </th>
+            <th>
+                Fill Up
+            </th>
+            <th>
+                Gallons
+            </th>
+            <th>
+                Price (per gallon)
             </th>
             <th>
                 Route
@@ -37,31 +46,40 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RideDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MileageStart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MileageEnd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalMiles)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RideRoute)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RideDescription)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.RideId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.RideId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.RideId">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MileageStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MileageEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMiles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FillUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gallons)
+            </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PricePerGallon)
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideRoute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RideId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RideId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RideId">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
