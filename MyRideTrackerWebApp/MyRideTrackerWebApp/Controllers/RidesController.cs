@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyRideTrackerWebApp.Data;
 using MyRideTrackerWebApp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace MyRideTrackerWebApp.Controllers
 {
@@ -21,18 +22,17 @@ namespace MyRideTrackerWebApp.Controllers
         }
 
         // GET: Rides
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int page = 1)
         {
             ViewBag.InitialStartingMileage = StartingMileage;
-           
-            var rides = from r in _context.Rides
-                        select r;
 
-            int pageSize = 5;
+            var query = _context.Rides.AsNoTracking().OrderBy(d => d.RideDate);
+
+            var model = await PagingList.CreateAsync(query, 5, page);
 
             //see this link for more info, https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-3.1
 
-            return View(await PaginatedList<Ride>.CreateAsync(rides.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(model);
         }
 
         // GET: Rides/Details/5

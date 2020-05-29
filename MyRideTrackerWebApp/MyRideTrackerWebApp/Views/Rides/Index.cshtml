@@ -1,4 +1,6 @@
-﻿@model PaginatedList<MyRideTrackerWebApp.Models.Ride>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<MyRideTrackerWebApp.Models.Ride>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
 
 @{
     ViewData["Title"] = "Rides List";
@@ -20,6 +22,7 @@
 <p>
     <a class="btn btn-primary" asp-controller="Rides" asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -99,7 +102,11 @@
         }
     </tbody>
 </table>
-@{ 
+<nav aria-label="Ride Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
+@*@{ 
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
@@ -112,7 +119,7 @@
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    class="btn btn-dark @nextDisabled">
     Next
-</a>
+</a>*@
 
 <br />
 

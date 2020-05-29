@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyRideTrackerWebApp.Data;
+using ReflectionIT.Mvc.Paging;
 
 namespace MyRideTrackerWebApp
 {
@@ -36,6 +37,12 @@ namespace MyRideTrackerWebApp
 					options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
 						_ => "The field is required.");
 				});
+			services.AddPaging(options =>
+			{
+				options.ViewName = "Bootstrap4";
+				options.HtmlIndicatorDown = " <span>&darr;</span>";
+				options.HtmlIndicatorUp = " <span>&uarr;</span>";
+			});
 
 			
 		}
