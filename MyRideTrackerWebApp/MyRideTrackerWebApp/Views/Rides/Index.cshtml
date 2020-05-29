@@ -1,13 +1,22 @@
-﻿@model IEnumerable<MyRideTrackerWebApp.Models.Ride>
+﻿@model PaginatedList<MyRideTrackerWebApp.Models.Ride>
 
 @{
     ViewData["Title"] = "Rides List";
 }
 
 <h1>Rides List</h1>
-Initial Odometer Reading: @ViewBag.InitialStartingMileage
-
-<br /><br />
+<div class="row">
+    <div class="col-md-4">
+        Initial Odometer Reading: @ViewBag.InitialStartingMileage
+    </div>
+    <div class="col-md-4">
+        Total Rides = @Model.Count()
+    </div>
+    <div class="col-md-4">
+        Total Miles = @Model.Sum(m => m.TotalMiles)
+    </div>
+</div>
+<br />
 <p>
     <a class="btn btn-primary" asp-controller="Rides" asp-action="Create">Create New</a>
 </p>
@@ -33,10 +42,10 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
                 Gallons
             </th>
             <th>
-                Price (per gallon)
+                Price <br />(per gallon)
             </th>
             <th>
-                Miles (per gallon)
+                Miles <br />(per gallon)
             </th>
             <th>
                 Route
@@ -90,10 +99,23 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
         }
     </tbody>
 </table>
+@{ 
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-dark @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-dark @nextDisabled">
+    Next
+</a>
 
-Total Rides = @Model.Count()
 <br />
-Total Miles = @Model.Sum(m => m.TotalMiles)
+
 @*<table class="table">
     <tr>
         <th>RideDate</th>

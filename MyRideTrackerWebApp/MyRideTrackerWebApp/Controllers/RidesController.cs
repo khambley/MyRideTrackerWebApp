@@ -21,27 +21,29 @@ namespace MyRideTrackerWebApp.Controllers
         }
 
         // GET: Rides
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
             ViewBag.InitialStartingMileage = StartingMileage;
-            var model = await _context.Rides
-                .Select(r => new Ride
-                {
-                    RideId = r.RideId,
-                    RideDate = r.RideDate,
-                    MileageStart = r.MileageStart,
-                    MileageEnd = r.MileageEnd,
-                    TotalMiles = r.TotalMiles,
-                    FillUp = r.FillUp,
-                    Gallons = r.Gallons,
-                    PricePerGallon = r.PricePerGallon,
-                    MilesPerGallon = r.MilesPerGallon,
-                    RideRoute = r.RideRoute,
-                    RideDescription = r.RideDescription,
-                    ImagePath = r.ImagePath
-                }).ToListAsync();
-            
-            return View(model);
+            //var model = await _context.Rides
+            //    .Select(r => new Ride
+            //    {
+            //        RideId = r.RideId,
+            //        RideDate = r.RideDate,
+            //        MileageStart = r.MileageStart,
+            //        MileageEnd = r.MileageEnd,
+            //        TotalMiles = r.TotalMiles,
+            //        FillUp = r.FillUp,
+            //        Gallons = r.Gallons,
+            //        PricePerGallon = r.PricePerGallon,
+            //        MilesPerGallon = r.MilesPerGallon,
+            //        RideRoute = r.RideRoute,
+            //        RideDescription = r.RideDescription,
+            //        ImagePath = r.ImagePath
+            //    }).ToListAsync();
+            var rides = from r in _context.Rides
+                        select r;
+            int pageSize = 10;
+            return View(await PaginatedList<Ride>.CreateAsync(rides.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Rides/Details/5
