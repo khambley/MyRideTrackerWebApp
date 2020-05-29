@@ -24,25 +24,14 @@ namespace MyRideTrackerWebApp.Controllers
         public async Task<IActionResult> Index(int? pageNumber)
         {
             ViewBag.InitialStartingMileage = StartingMileage;
-            //var model = await _context.Rides
-            //    .Select(r => new Ride
-            //    {
-            //        RideId = r.RideId,
-            //        RideDate = r.RideDate,
-            //        MileageStart = r.MileageStart,
-            //        MileageEnd = r.MileageEnd,
-            //        TotalMiles = r.TotalMiles,
-            //        FillUp = r.FillUp,
-            //        Gallons = r.Gallons,
-            //        PricePerGallon = r.PricePerGallon,
-            //        MilesPerGallon = r.MilesPerGallon,
-            //        RideRoute = r.RideRoute,
-            //        RideDescription = r.RideDescription,
-            //        ImagePath = r.ImagePath
-            //    }).ToListAsync();
+           
             var rides = from r in _context.Rides
                         select r;
-            int pageSize = 10;
+
+            int pageSize = 5;
+
+            //see this link for more info, https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-3.1
+
             return View(await PaginatedList<Ride>.CreateAsync(rides.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
