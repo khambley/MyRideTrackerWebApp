@@ -35,11 +35,12 @@ namespace MyRideTrackerWebApp.Controllers
                     FillUp = r.FillUp,
                     Gallons = r.Gallons,
                     PricePerGallon = r.PricePerGallon,
+                    MilesPerGallon = r.MilesPerGallon,
                     RideRoute = r.RideRoute,
                     RideDescription = r.RideDescription,
                     ImagePath = r.ImagePath
                 }).ToListAsync();
-
+            
             return View(model);
         }
 
@@ -101,7 +102,11 @@ namespace MyRideTrackerWebApp.Controllers
                 ride.MileageStart = prevRideInDb.MileageEnd;
                 ViewBag.Mileage = ride.MileageStart;
             }
-
+            if(ride.FillUp == true)
+            {
+                ride.MilesPerGallon = GetMilesPerGallon();
+            }
+            
             ride.TotalMiles = ride.MileageEnd - ride.MileageStart;
 
             if (ModelState.IsValid)
@@ -199,6 +204,26 @@ namespace MyRideTrackerWebApp.Controllers
         private bool RideExists(int id)
         {
             return _context.Rides.Any(e => e.RideId == id);
+        }
+        public decimal? GetMilesPerGallon()
+        {
+            var fillUpList = _context.Rides
+                .OrderByDescending(r => r.RideId)
+                .Where(r => r.FillUp == true).ToList();
+            
+            if (fillUpList.Count() > 1)
+            {
+                var latestFillUp = fillUpList.ElementAt(0);
+                var secondLatestFillUp = fillUpList.ElementAt(1);
+                decimal fillUpMiles = latestFillUp.MileageEnd - secondLatestFillUp.MileageEnd;
+                decimal? fillUpMilesPerGallon = fillUpMiles / latestFillUp.Gallons;
+                return fillUpMilesPerGallon;
+            }
+            else
+                return null;
+            
+            
+            
         }
     }
 }

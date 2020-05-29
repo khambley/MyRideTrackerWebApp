@@ -6,6 +6,7 @@
 
 <h1>Rides List</h1>
 Initial Odometer Reading: @ViewBag.InitialStartingMileage
+
 <br /><br />
 <p>
     <a class="btn btn-primary" asp-controller="Rides" asp-action="Create">Create New</a>
@@ -33,6 +34,9 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
             </th>
             <th>
                 Price (per gallon)
+            </th>
+            <th>
+                Miles (per gallon)
             </th>
             <th>
                 Route
@@ -65,9 +69,12 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
             <td>
                 @Html.DisplayFor(modelItem => item.Gallons)
             </td>
-           <td>
-               @Html.DisplayFor(modelItem => item.PricePerGallon)
-           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PricePerGallon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MilesPerGallon)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RideRoute)
             </td>
@@ -87,3 +94,21 @@ Initial Odometer Reading: @ViewBag.InitialStartingMileage
 Total Rides = @Model.Count()
 <br />
 Total Miles = @Model.Sum(m => m.TotalMiles)
+@*<table class="table">
+    <tr>
+        <th>RideDate</th>
+        <th>Gallons</th>
+        <th>PricePerGallon</th>
+        <th>End Mileage</th>
+    </tr>
+    @foreach (var item in (List<Ride>)ViewBag.FillUpList)
+    {
+        <tr>
+            <td>@item.RideDate</td>
+            <td>@item.Gallons</td>
+            <td>@item.PricePerGallon</td>
+            <td>@item.MileageEnd</td>
+        </tr>
+    }
+</table>*@
+

@@ -24,18 +24,7 @@ namespace MyRideTrackerWebApp.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			var model = await _context.Rides
-				.Select(r => new Ride
-				{
-					RideId = r.RideId,
-					RideDate = r.RideDate,
-					MileageStart = r.MileageStart,
-					MileageEnd = r.MileageEnd,
-					TotalMiles = r.TotalMiles,
-					RideRoute = r.RideRoute,
-					RideDescription = r.RideDescription,
-					ImagePath = r.ImagePath
-				}).ToListAsync();
+			var model = await _context.Rides.ToListAsync();
 
 			return View(model);
 		}

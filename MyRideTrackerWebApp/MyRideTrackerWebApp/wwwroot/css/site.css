@@ -61,6 +61,9 @@ for details on configuring this project to bundle and minify static web assets. 
 .icon-motorcycle-goggles:before {
     content: "\66";
 }
+.margin-bottom {
+    margin-bottom: 10px;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;

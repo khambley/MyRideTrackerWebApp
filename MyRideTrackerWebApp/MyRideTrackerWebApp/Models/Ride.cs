@@ -29,6 +29,9 @@ namespace MyRideTrackerWebApp.Models
 		public decimal? PricePerGallon { get; set; }
 
 		[Column(TypeName = "decimal(8, 2)")]
+		public decimal? MilesPerGallon { get; set; }
+
+		[Column(TypeName = "decimal(8, 2)")]
 		public decimal? MapMiles { get; set; }
 		public string? RideRoute { get; set; }
 		public string? RideDescription { get; set; }
