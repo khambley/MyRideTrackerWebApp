@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MyRideTrackerWebApp.Data;
 using MyRideTrackerWebApp.Models;
 using ReflectionIT.Mvc.Paging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyRideTrackerWebApp.Controllers
 {
@@ -58,7 +59,7 @@ namespace MyRideTrackerWebApp.Controllers
 
             return View(ride);
         }
-
+        [Authorize]
         // GET: Rides/Create
         public IActionResult Create()
         {
@@ -77,7 +78,7 @@ namespace MyRideTrackerWebApp.Controllers
             }
             return View();
         }
-
+        [Authorize]
         // POST: Rides/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -114,7 +115,7 @@ namespace MyRideTrackerWebApp.Controllers
             }
             return View(ride);
         }
-
+        [Authorize]
         // GET: Rides/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -131,7 +132,7 @@ namespace MyRideTrackerWebApp.Controllers
             
             return View(ride);
         }
-
+        [Authorize]
         // POST: Rides/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -168,7 +169,7 @@ namespace MyRideTrackerWebApp.Controllers
             }
             return View(ride);
         }
-
+        [Authorize]
         // GET: Rides/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -186,7 +187,7 @@ namespace MyRideTrackerWebApp.Controllers
 
             return View(ride);
         }
-
+        [Authorize]
         // POST: Rides/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

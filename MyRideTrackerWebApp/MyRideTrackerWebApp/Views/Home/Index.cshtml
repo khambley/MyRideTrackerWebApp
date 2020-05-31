@@ -7,6 +7,7 @@
             <img style="width: 100%;" src="~/images/Katherine_Motorcycle_Pic.jpg" />
         </div>
         <div class="col-md-6 text-center">
+            <div class="text-center"><b>@DateTime.Now.ToString("dddd, MMMM dd, yyyy h:mm tt")</b></div>
             <h2>Hi! I'm Katherine Hambley.</h2>
             <h5 class="text-muted">I like to ride my motorcycle! And I like programming.</h5>
             <p>So, being the geek that I am, I combined my two favorite passions and created a web app to track my rides. I'm always adding on new features but I wanted to start with something simple and scale it up.</p> <p>Feel free to take a look around and contact me if you have any questions. Ride on!</p>
@@ -30,11 +31,7 @@
         <a class="btn btn-outline-dark btn-lg btn-block text-center" asp-area="" asp-controller="Rides" asp-action="Create"><i class="icon icon-motorcycle-helmet"></i><br />View Challenges</a>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        <a asp-area="" asp-controller="Seed" asp-action="Index">Seed</a>
-    </div>
-</div>
+
 <hr />
 
 

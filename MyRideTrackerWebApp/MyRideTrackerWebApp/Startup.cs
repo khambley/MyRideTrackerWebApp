@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyRideTrackerWebApp.Data;
 using ReflectionIT.Mvc.Paging;
+using MyRideTrackerWebApp.Areas.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace MyRideTrackerWebApp
 {
@@ -37,6 +39,7 @@ namespace MyRideTrackerWebApp
 					options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
 						_ => "The field is required.");
 				});
+
 			services.AddPaging(options =>
 			{
 				options.ViewName = "Bootstrap4";
@@ -53,6 +56,7 @@ namespace MyRideTrackerWebApp
 			if (env.IsProduction() || env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseDatabaseErrorPage();
 			}
 			//else
 			//{
@@ -62,6 +66,7 @@ namespace MyRideTrackerWebApp
 
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
@@ -69,6 +74,7 @@ namespace MyRideTrackerWebApp
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapRazorPages();
 			});
 		}
 	}
