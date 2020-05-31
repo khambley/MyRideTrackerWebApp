@@ -8,14 +8,14 @@
 
 <h1>Rides List</h1>
 <div class="row">
-    <div class="col-md-4">
-        Initial Odometer Reading: @ViewBag.InitialStartingMileage
+    <div class="col-md-3">
+        Total Rides = @ViewBag.Count
     </div>
-    <div class="col-md-4">
-        Total Rides = @Model.Count()
+    <div class="col-md-3">
+        Total Miles = @ViewBag.TotalMiles
     </div>
-    <div class="col-md-4">
-        Total Miles = @Model.Sum(m => m.TotalMiles)
+    <div class="col-md-3">
+        Current Odometer: @ViewBag.CurrentOdometer
     </div>
 </div>
 <br />
@@ -64,7 +64,8 @@
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RideDate)
+                @item.RideDate.ToString("MM/dd/yyyy")<br />
+                @item.RideDate.ToString("hh:mm tt")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MileageStart)

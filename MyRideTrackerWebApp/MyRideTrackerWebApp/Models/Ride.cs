@@ -10,7 +10,7 @@ namespace MyRideTrackerWebApp.Models
 	public class Ride
 	{
 		public int RideId { get; set; }
-		[DataType(DataType.Date)]
+		[DataType(DataType.DateTime)]
 		[Required]
 		public DateTime RideDate { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
@@ -21,6 +21,7 @@ namespace MyRideTrackerWebApp.Models
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		public int TotalMiles { get; set; }
 		public bool FillUp { get; set; }
+		public bool Service { get; set; }
 
 		[Column(TypeName = "decimal(8, 2)")]
 		public decimal? Gallons { get; set; }

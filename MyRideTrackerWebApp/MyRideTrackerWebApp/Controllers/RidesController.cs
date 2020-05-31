@@ -25,6 +25,12 @@ namespace MyRideTrackerWebApp.Controllers
         public async Task<IActionResult> Index(int page = 1)
         {
             ViewBag.InitialStartingMileage = StartingMileage;
+            ViewBag.Count = _context.Rides.Count();
+            ViewBag.TotalMiles = _context.Rides.Sum(m => m.TotalMiles);
+            var latestRideinDB = _context.Rides
+                                    .OrderByDescending(r => r.RideId)
+                                    .FirstOrDefault();
+            ViewBag.CurrentOdometer = latestRideinDB.MileageEnd;
 
             var query = _context.Rides.AsNoTracking().OrderBy(d => d.RideDate);
 
