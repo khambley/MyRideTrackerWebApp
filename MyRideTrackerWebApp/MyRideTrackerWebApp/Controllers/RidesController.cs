@@ -33,7 +33,7 @@ namespace MyRideTrackerWebApp.Controllers
                                     .FirstOrDefault();
             ViewBag.CurrentOdometer = latestRideinDB.MileageEnd;
 
-            var query = _context.Rides.AsNoTracking().OrderBy(d => d.RideDate);
+            var query = _context.Rides.AsNoTracking().OrderByDescending(d => d.RideDate);
 
             var model = await PagingList.CreateAsync(query, 5, page);
 

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyRideTrackerWebApp.Models;
 using MyRideTrackerWebApp.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyRideTrackerWebApp.Controllers
 {
+    [Authorize]
     public class SeedController : Controller
     {
         private RideDbContext context;
@@ -176,7 +178,7 @@ namespace MyRideTrackerWebApp.Controllers
         {
             context.Database.SetCommandTimeout(System.TimeSpan.FromMinutes(10));
             context.Database.BeginTransaction();
-            context.Database.ExecuteSqlRaw("TRUNCATE TABLE Rides");
+            context.Database.ExecuteSqlRaw("DELETE FROM Rides");
             context.Database.CommitTransaction();
             return RedirectToAction(nameof(Index));
 
