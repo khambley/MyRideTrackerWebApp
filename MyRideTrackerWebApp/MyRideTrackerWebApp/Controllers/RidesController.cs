@@ -28,6 +28,7 @@ namespace MyRideTrackerWebApp.Controllers
             ViewBag.InitialStartingMileage = StartingMileage;
             ViewBag.Count = _context.Rides.Count();
             ViewBag.TotalMiles = _context.Rides.Sum(m => m.TotalMiles);
+
             var latestRideinDB = _context.Rides
                                     .OrderByDescending(r => r.RideId)
                                     .FirstOrDefault();
@@ -37,6 +38,14 @@ namespace MyRideTrackerWebApp.Controllers
             } else
             {
                 ViewBag.CurrentOdometer = 0;
+            }
+
+            if (_context.Rides.Count() > 0)
+            {
+                ViewBag.TotalMilesSinceLastFillUp = GetTotalMilesSinceLastFillUp();
+            } else
+            {
+                ViewBag.TotalMilesSinceLastFillUp = 0;
             }
             
             var query = _context.Rides.AsNoTracking().OrderByDescending(d => d.RideDate);
@@ -209,7 +218,7 @@ namespace MyRideTrackerWebApp.Controllers
         {
             return _context.Rides.Any(e => e.RideId == id);
         }
-        public decimal? GetMilesPerGallon()
+        private decimal? GetMilesPerGallon()
         {
             var fillUpList = _context.Rides
                 .OrderByDescending(r => r.RideId)
@@ -224,10 +233,25 @@ namespace MyRideTrackerWebApp.Controllers
                 return fillUpMilesPerGallon;
             }
             else
-                return null;
+                return null;  
+        }
+        private int GetTotalMilesSinceLastFillUp()
+        {
+            var lastFillUpRide = _context.Rides
+                .OrderByDescending(r => r.RideId)
+                .Where(r => r.FillUp == true).FirstOrDefault();
+
+            var rideList = _context.Rides
+                .OrderByDescending(r => r.RideId)
+                .Where(r => r.RideDate > lastFillUpRide.RideDate).ToList();
+
+            var totalMiles = 0;
             
-            
-            
+            foreach (Ride ride in rideList)
+            {
+                totalMiles = totalMiles + ride.TotalMiles;
+            }
+            return totalMiles;   
         }
     }
 }

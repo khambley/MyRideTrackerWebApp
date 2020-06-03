@@ -17,6 +17,9 @@
     <div class="col-md-3">
         Current Odometer: @ViewBag.CurrentOdometer
     </div>
+    <div class="col-md-3">
+        Total Miles Since Last FillUp: @ViewBag.TotalMilesSinceLastFillUp
+    </div>
 </div>
 <br />
 <p>
@@ -67,6 +70,7 @@
         {
         <tr>
             <td>
+                @item.RideDate.ToString("dddd")<br />
                 @item.RideDate.ToString("MM/dd/yyyy")<br />
                 @item.RideDate.ToString("hh:mm tt")
             </td>
