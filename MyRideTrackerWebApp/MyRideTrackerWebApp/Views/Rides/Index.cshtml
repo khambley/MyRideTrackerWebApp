@@ -32,6 +32,7 @@
             <th>
                 Date
             </th>
+            <th>Ride #</th>
             <th>
                 Start <br /> Mileage
             </th>
@@ -73,6 +74,9 @@
                 @item.RideDate.ToString("dddd")<br />
                 @item.RideDate.ToString("MM/dd/yyyy")<br />
                 @item.RideDate.ToString("hh:mm tt")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RideNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MileageStart)

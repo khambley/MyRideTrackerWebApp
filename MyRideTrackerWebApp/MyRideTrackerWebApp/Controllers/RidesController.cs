@@ -99,7 +99,7 @@ namespace MyRideTrackerWebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RideId,RideDate,MileageEnd,FillUp,Gallons,PricePerGallon,MapMiles,RideRoute,RideDescription,ImagePath")] Ride ride)
+        public async Task<IActionResult> Create([Bind("RideId,RideDate,MileageEnd,FillUp,Gallons,PricePerGallon,MapMiles,RideRoute,RideDescription,ImagePath,Service")] Ride ride)
         {
             var ridesList = _context.Rides.ToList();
             if ( ridesList.Count() == 0)
@@ -115,6 +115,9 @@ namespace MyRideTrackerWebApp.Controllers
                 ride.MileageStart = prevRideInDb.MileageEnd;
                 ViewBag.Mileage = ride.MileageStart;
             }
+
+            ride.RideNumber = _context.Rides.Count() + 1;
+
             if(ride.FillUp == true)
             {
                 ride.MilesPerGallon = GetMilesPerGallon();
@@ -153,7 +156,7 @@ namespace MyRideTrackerWebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RideId,RideDate,MileageStart,MileageEnd,RideRoute,RideDescription")] Ride ride)
+        public async Task<IActionResult> Edit(int id, [Bind("RideId,RideDate,RideNumber,MileageStart,MileageEnd,RideRoute,RideDescription,Service")] Ride ride)
         {
             if (id != ride.RideId)
             {
@@ -161,7 +164,7 @@ namespace MyRideTrackerWebApp.Controllers
             }
 
             ride.TotalMiles = ride.MileageEnd - ride.MileageStart;
-
+            
             if (ModelState.IsValid)
             {
                 try

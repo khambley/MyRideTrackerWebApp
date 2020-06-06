@@ -17,9 +17,12 @@ namespace MyRideTrackerWebApp.Models
 		public int MileageStart { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		[Required]
+		//[GreaterThan("MileageStart")]
 		public int MileageEnd { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		public int TotalMiles { get; set; }
+		public int RideNumber { get; set; }
+
 		public bool FillUp { get; set; }
 		public bool Service { get; set; }
 

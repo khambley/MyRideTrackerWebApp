@@ -32,6 +32,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #1
                     RideDate = Convert.ToDateTime("05/21/2020"),
+                    RideNumber = 1,
                     MileageStart = 415,
                     MileageEnd = 415,
                     MilesPerGallon = 0,
@@ -45,6 +46,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #2
                     RideDate = Convert.ToDateTime("05/22/2020"),
+                    RideNumber = 2,
                     MileageStart = 415,
                     MileageEnd = 485,
                     TotalMiles = 485 - 415,
@@ -56,6 +58,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #3
                     RideDate = Convert.ToDateTime("05/22/2020"),
+                    RideNumber = 3,
                     MileageStart = 485,
                     MileageEnd = 510,
                     TotalMiles = 510 - 485,
@@ -67,6 +70,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #4
                     RideDate = Convert.ToDateTime("05/23/2020"),
+                    RideNumber = 4,
                     MileageStart = 510,
                     MileageEnd = 530,
                     TotalMiles = 530 - 510,
@@ -81,6 +85,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #5
                     RideDate = Convert.ToDateTime("05/24/2020"),
+                    RideNumber = 5,
                     MileageStart = 530,
                     MileageEnd = 579,
                     TotalMiles = 579 - 530,
@@ -92,6 +97,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #6
                     RideDate = Convert.ToDateTime("05/25/2020"),
+                    RideNumber = 6,
                     MileageStart = 579,
                     MileageEnd = 600,
                     TotalMiles = 600 - 579,
@@ -107,6 +113,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #7
                     RideDate = Convert.ToDateTime("05/26/2020 02:09 PM"),
+                    RideNumber = 7,
                     MileageStart = 600,
                     MileageEnd = 629,
                     TotalMiles = 629 - 600,
@@ -118,6 +125,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #8
                     RideDate = Convert.ToDateTime("05/26/2020 04:00 PM"),
+                    RideNumber = 8,
                     MileageStart = 630,
                     MileageEnd = 660,
                     TotalMiles = 660 - 630,
@@ -129,6 +137,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #9
                     RideDate = Convert.ToDateTime("05/26/2020 06:13 PM"),
+                    RideNumber = 9,
                     MileageStart = 666,
                     MileageEnd = 667,
                     TotalMiles = 667 - 666,
@@ -140,6 +149,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #10
                     RideDate = Convert.ToDateTime("05/27/2020 05:03 PM"),
+                    RideNumber = 10,
                     MileageStart = 667,
                     MileageEnd = 672,
                     FillUp = false,
@@ -151,6 +161,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #11
                     RideDate = Convert.ToDateTime("05/29/2020 09:20 AM"),
+                    RideNumber = 11,
                     MileageStart = 672,
                     MileageEnd = 675,
                     FillUp = false,
@@ -162,6 +173,7 @@ namespace MyRideTrackerWebApp.Controllers
                 {
                     //Ride #12
                     RideDate = Convert.ToDateTime("05/29/2020 12:38 PM"),
+                    RideNumber = 12,
                     MileageStart = 675,
                     MileageEnd = 681,
                     TotalMiles = 681 - 675,
