@@ -32,6 +32,7 @@ Current Mileage: @ViewBag.Mileage
                 <label asp-for="MileageEnd" class="control-label">End Mileage</label>
                 <input asp-for="MileageEnd" class="form-control" />
                 <span asp-validation-for="MileageEnd" class="text-danger"></span>
+                <span class="text-danger">@ViewBag.MileageError</span>
             </div>
             <div class="form-group">
                 <label asp-for="MapMiles" class="control-label">Map Mileage</label>

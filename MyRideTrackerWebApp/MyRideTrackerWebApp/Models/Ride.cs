@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+//using FoolProof.Core;
+
 
 namespace MyRideTrackerWebApp.Models
 {
@@ -17,7 +19,6 @@ namespace MyRideTrackerWebApp.Models
 		public int MileageStart { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		[Required]
-		//[GreaterThan("MileageStart")]
 		public int MileageEnd { get; set; }
 		//TODO: make this a decimal to support other user's odometers, mine rounds to the nearest int
 		public int TotalMiles { get; set; }

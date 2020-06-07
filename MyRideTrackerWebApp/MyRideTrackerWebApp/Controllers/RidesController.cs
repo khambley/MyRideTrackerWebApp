@@ -88,7 +88,7 @@ namespace MyRideTrackerWebApp.Controllers
                 var prevRideInDb = _context.Rides
                                            .OrderByDescending(r => r.RideId)
                                            .FirstOrDefault();
-
+                
                 ViewBag.Mileage = prevRideInDb.MileageEnd;
             }
             return View();
@@ -112,8 +112,18 @@ namespace MyRideTrackerWebApp.Controllers
                                            .OrderByDescending(r => r.RideId)
                                            .FirstOrDefault();
 
-                ride.MileageStart = prevRideInDb.MileageEnd;
-                ViewBag.Mileage = ride.MileageStart;
+                ViewBag.Mileage = prevRideInDb.MileageEnd;
+
+                if (ride.MileageEnd > prevRideInDb.MileageEnd)
+                {
+                    ride.MileageStart = prevRideInDb.MileageEnd;
+                    
+                } else
+                {
+                    ViewBag.MileageError = "End Mileage must be greater than Start Mileage.";
+                    return View(ride);   
+                }
+                
             }
 
             ride.RideNumber = _context.Rides.Count() + 1;
@@ -206,7 +216,7 @@ namespace MyRideTrackerWebApp.Controllers
             return View(ride);
         }
         [Authorize]
-        // POST: Rides/Delete/5
+        //POST: Rides/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
