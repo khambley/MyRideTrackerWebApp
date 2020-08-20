@@ -128,7 +128,17 @@ namespace MyRideTrackerWebApp.Controllers
 
             ride.RideNumber = _context.Rides.Count() + 1;
 
-            if(ride.FillUp == true)
+            if(ride.FillUp == true && ride.Gallons == null)
+            {
+                ViewBag.FillUpError = "If FillUp is checked, # of Gallons cannot be null";
+                return View(ride);
+            }
+            if (ride.FillUp == true && ride.PricePerGallon == null)
+            {
+                ViewBag.PricePerGallonError = "If FillUp is checked, Price per Gallon cannot be null";
+                return View(ride);
+            }
+            if (ride.FillUp == true)
             {
                 ride.MilesPerGallon = GetMilesPerGallon();
             }
